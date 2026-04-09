@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EthioJobs Brand Ambassador Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1B5E3B;
+  --green-mid: #2D7A52;
+  --green-light: #E8F5EE;
+  --green-xlight: #F0FAF4;
+  --gold: #C8992A;
+  --gold-light: #FDF5DC;
+  --gold-mid: #E5B84A;
+  --charcoal: #1A1A2E;
+  --gray: #6B7280;
+  --gray-light: #F3F4F6;
+  --white: #FFFFFF;
+  --red: #C0392B;
+  --teal: #0D7377;
+  --shadow: 0 4px 24px rgba(27,94,59,0.10);
+  --shadow-lg: 0 8px 40px rgba(27,94,59,0.16);
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #F8FAF9;
+  color: var(--charcoal);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* ── SIDEBAR NAV ─────────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 260px; height: 100vh;
+  background: var(--green);
+  display: flex; flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.sidebar-logo .brand { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); font-weight: 900; letter-spacing: -0.5px; }
+.sidebar-logo .sub { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+
+.sidebar-progress {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.progress-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.progress-bar { height: 4px; background: rgba(255,255,255,0.15); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.5s ease; }
+.progress-text { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-left: 3px solid transparent;
+  font-size: 13.5px; font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  position: relative;
+}
+.nav-item:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9); }
+.nav-item.active { background: rgba(200,153,42,0.15); border-left-color: var(--gold); color: var(--white); }
+.nav-item .nav-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; flex-shrink: 0;
+  transition: background 0.2s;
+}
+.nav-item.active .nav-num { background: var(--gold); color: var(--charcoal); }
+.nav-item.done .nav-num { background: rgba(255,255,255,0.25); }
+.nav-item.done .nav-num::after { content: '✓'; font-size: 11px; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); position: absolute; right: 16px; opacity: 0; transition: opacity 0.2s; }
+.nav-item.active .nav-dot { opacity: 1; }
+
+.sidebar-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── HAMBURGER ────────────────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  position: fixed; top: 16px; left: 16px; z-index: 200;
+  background: var(--green); border: none;
+  width: 44px; height: 44px; border-radius: 10px;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; cursor: pointer;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+
+/* ── MAIN CONTENT ─────────────────────────────────────────────────────── */
+.main {
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+/* ── PAGE HEADER ──────────────────────────────────────────────────────── */
+.page-header {
+  background: linear-gradient(135deg, var(--green) 0%, #0F3D25 100%);
+  padding: 72px 64px 56px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(200,153,42,0.08);
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: -40px; right: 120px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.header-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
+.header-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+.header-sub { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 540px; }
+.header-stats {
+  display: flex; gap: 24px; margin-top: 36px; flex-wrap: wrap;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px; padding: 10px 20px;
+  display: flex; align-items: center; gap: 8px;
+  backdrop-filter: blur(8px);
+}
+.stat-pill .num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); }
+.stat-pill .lbl { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+/* ── MODULE PAGES ─────────────────────────────────────────────────────── */
+.module-page { display: none; }
+.module-page.active { display: block; }
+
+.module-content { padding: 48px 64px 80px; max-width: 900px; }
+
+/* ── MODULE HEADER ────────────────────────────────────────────────────── */
+.module-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 36px;
+}
+.module-badge {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--green); color: white;
+  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.module-title-block h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--charcoal); line-height: 1.2; }
+.module-title-block span { font-size: 13px; color: var(--gray); font-weight: 500; }
+
+/* ── TYPOGRAPHY ───────────────────────────────────────────────────────── */
+h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--green); margin: 32px 0 12px; }
+p { color: #374151; margin-bottom: 16px; font-size: 15.5px; }
+
+/* ── STAT CARDS ───────────────────────────────────────────────────────── */
+.stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 28px 0; }
+.stat-card {
+  background: var(--green); color: white; border-radius: var(--radius);
+  padding: 22px 16px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.stat-card .big { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--gold); }
+.stat-card .lbl { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+/* ── STEP CARDS ───────────────────────────────────────────────────────── */
+.steps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 28px 0; }
+.step-card {
+  background: white; border-radius: var(--radius);
+  border-left: 4px solid var(--green);
+  padding: 24px; box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.step-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--green); color: white;
+  font-weight: 700; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.step-card h4 { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+.step-card p { font-size: 14px; margin: 0 0 10px; }
+.step-tip { font-size: 13px; color: var(--green-mid); font-style: italic; background: var(--green-xlight); padding: 8px 12px; border-radius: 8px; }
+
+/* ── PITCH BOX ────────────────────────────────────────────────────────── */
+.pitch-box {
+  background: var(--green-light);
+  border: 2px solid var(--green-mid);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin: 24px 0;
+  font-size: 15.5px; font-style: italic;
+  color: var(--charcoal);
+  position: relative;
+}
+.pitch-box::before {
+  content: '"';
+  position: absolute; top: -8px; left: 24px;
+  font-family: 'Playfair Display', serif; font-size: 72px;
+  color: var(--green-mid); opacity: 0.25; line-height: 1;
+}
+
+/* ── SERVICE CATEGORY ─────────────────────────────────────────────────── */
+.service-category {
+  background: var(--green);
+  color: white; border-radius: var(--radius);
+  padding: 16px 24px; margin: 36px 0 20px;
+  font-weight: 700; font-size: 16px; letter-spacing: 0.3px;
+}
+
+/* ── SERVICE CARDS ────────────────────────────────────────────────────── */
+.service-card {
+  background: white; border-radius: var(--radius);
+  padding: 28px; margin-bottom: 20px;
+  box-shadow: var(--shadow); border: 1px solid #E5E7EB;
+  transition: box-shadow 0.2s;
+}
+.service-card:hover { box-shadow: var(--shadow-lg); }
+.service-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.service-badge { background: var(--green); color: white; padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.service-card h4 { font-size: 17px; font-weight: 700; color: var(--charcoal); margin: 12px 0 8px; }
+.service-card p { font-size: 14.5px; color: #4B5563; margin-bottom: 16px; }
+
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.feature-list h5, .delivery-box h5 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 10px; }
+.feature-list ul { list-style: none; }
+.feature-list li { font-size: 14px; color: #374151; padding: 4px 0 4px 20px; position: relative; }
+.feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+.delivery-box {
+  background: var(--green-xlight); border-radius: 10px; padding: 16px;
+  font-size: 13.5px; color: var(--charcoal);
+}
+.delivery-box .delivery-num { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--green); }
+
+.example-box {
+  background: var(--charcoal); color: white;
+  border-radius: 10px; padding: 16px 20px;
+  font-size: 13.5px; line-height: 1.6;
+  margin-top: 16px;
+}
+.example-box .ex-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+
+/* ── TABLE ────────────────────────────────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; margin: 20px 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.data-table thead { background: var(--green); color: white; }
+.data-table th { padding: 14px 16px; font-size: 13px; font-weight: 600; text-align: left; letter-spacing: 0.3px; }
+.data-table td { padding: 14px 16px; font-size: 14px; color: #374151; border-bottom: 1px solid #F3F4F6; }
+.data-table tbody tr:nth-child(even) { background: #FAFAFA; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table .service-name { font-weight: 700; color: var(--green); }
+
+/* ── PITCH FRAMEWORK ──────────────────────────────────────────────────── */
+.pitch-steps { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
+.pitch-step {
+  background: white; border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow);
+  border-left: 5px solid var(--gold);
+  display: flex; gap: 24px;
+  cursor: pointer; transition: box-shadow 0.2s;
+}
+.pitch-step:hover { box-shadow: var(--shadow-lg); }
+.pitch-letter {
+  font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900;
+  color: var(--gold); line-height: 1; flex-shrink: 0; width: 48px;
+}
+.pitch-step-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.pitch-step-content p { font-size: 14.5px; color: #4B5563; margin-bottom: 12px; }
+.pitch-script {
+  background: var(--green-xlight); border-radius: 8px; padding: 14px 16px;
+  font-size: 14px; font-style: italic; color: var(--charcoal);
+  margin-bottom: 10px; border-left: 3px solid var(--green-mid);
+}
+.pitch-tip { font-size: 13px; color: var(--green-mid); display: flex; gap: 6px; align-items: flex-start; }
+.pitch-tip::before { content: '💡'; flex-shrink: 0; }
+
+/* ── AUDIO PLAYER ─────────────────────────────────────────────────────── */
+.audio-section {
+  background: linear-gradient(135deg, var(--charcoal) 0%, #0D1B2A 100%);
+  border-radius: var(--radius-lg); padding: 36px;
+  margin: 32px 0; color: white;
+}
+.audio-section h3 { color: var(--gold); font-family: 'Playfair Display', serif; margin: 0 0 8px; font-size: 22px; }
+.audio-section .audio-desc { color: rgba(255,255,255,0.65); font-size: 14px; margin-bottom: 28px; }
+
+.audio-player { background: rgba(255,255,255,0.06); border-radius: 14px; padding: 24px; border: 1px solid rgba(255,255,255,0.1); }
+.audio-track-info { margin-bottom: 20px; }
+.audio-track-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.audio-track-sub { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+.audio-controls { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.audio-btn {
+  background: none; border: none; cursor: pointer;
+  color: white; transition: color 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.audio-btn:hover { color: var(--gold); }
+.play-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--gold); color: var(--charcoal) !important;
+  font-size: 20px; flex-shrink: 0;
+  transition: transform 0.15s, background 0.2s !important;
+}
+.play-btn:hover { transform: scale(1.08); background: var(--gold-mid) !important; }
+
+.audio-progress { flex: 1; display: flex; align-items: center; gap: 12px; }
+.audio-bar {
+  flex: 1; height: 4px; background: rgba(255,255,255,0.15);
+  border-radius: 4px; cursor: pointer; position: relative; overflow: visible;
+}
+.audio-bar-fill { height: 100%; background: var(--gold); border-radius: 4px; width: 0%; transition: width 0.1s; }
+.audio-bar-thumb {
+  width: 14px; height: 14px; background: white; border-radius: 50%;
+  position: absolute; top: 50%; transform: translate(-50%,-50%);
+  left: 0%; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: left 0.1s;
+}
+.audio-time { font-size: 12px; font-family: 'DM Mono', monospace; color: rgba(255,255,255,0.5); white-space: nowrap; }
+
+.audio-annotations {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.annotation {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 12px 16px; border-radius: 10px;
+  background: rgba(255,255,255,0.05); cursor: pointer;
+  transition: background 0.2s;
+}
+.annotation:hover { background: rgba(255,255,255,0.09); }
+.annotation.active { background: rgba(200,153,42,0.15); border: 1px solid rgba(200,153,42,0.3); }
+.annotation-time {
+  font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold);
+  white-space: nowrap; padding-top: 2px; font-weight: 500;
+}
+.annotation-text strong { display: block; font-size: 13px; color: white; margin-bottom: 2px; }
+.annotation-text span { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+.speed-controls { display: flex; gap: 8px; margin-top: 16px; }
+.speed-btn {
+  padding: 5px 12px; border-radius: 50px; font-size: 12px; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2); background: none; color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.2s;
+}
+.speed-btn.active { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+
+/* ── OBJECTION TABLE ──────────────────────────────────────────────────── */
+.objection-list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+.objection-item {
+  background: white; border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); border: 1px solid #E5E7EB;
+}
+.objection-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px; cursor: pointer; gap: 12px;
+}
+.objection-q {
+  font-size: 14.5px; font-weight: 600; color: var(--red);
+  display: flex; align-items: center; gap: 10px;
+}
+.objection-q::before { content: '⚡'; font-size: 16px; }
+.objection-toggle { font-size: 20px; color: var(--gray); transition: transform 0.3s; flex-shrink: 0; }
+.objection-item.open .objection-toggle { transform: rotate(45deg); }
+.objection-answer {
+  padding: 0 24px; max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  font-size: 14.5px; color: #374151; line-height: 1.7;
+  border-top: 0px solid #F3F4F6;
+}
+.objection-item.open .objection-answer {
+  max-height: 200px; padding: 0 24px 20px;
+  border-top: 1px solid #F3F4F6;
+}
+
+/* ── QUICK REF TABLE ──────────────────────────────────────────────────── */
+.golden-rule {
+  background: var(--green); color: white;
+  border-radius: var(--radius); padding: 20px 24px;
+  font-size: 14.5px; font-style: italic;
+  margin: 24px 0; line-height: 1.7;
+  text-align: center;
+}
+.golden-rule strong { color: var(--gold); font-style: normal; }
+
+/* ── ACTIVITIES ───────────────────────────────────────────────────────── */
+.activity-section {
+  background: linear-gradient(135deg, var(--gold-light) 0%, #FFF9E6 100%);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg); padding: 36px;
+  margin: 40px 0;
+}
+.activity-header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.activity-icon { font-size: 28px; }
+.activity-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--charcoal); }
+.activity-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.activity-tag {
+  background: rgba(200,153,42,0.15); color: var(--gold);
+  font-size: 12px; font-weight: 600; padding: 5px 14px;
+  border-radius: 50px; display: flex; align-items: center; gap: 5px;
+}
+
+.activity-obj {
+  background: white; border-radius: 10px; padding: 16px 20px;
+  font-size: 14.5px; font-weight: 500; color: var(--charcoal);
+  margin-bottom: 24px; border-left: 4px solid var(--gold);
+}
+
+/* ── QUIZ ─────────────────────────────────────────────────────────────── */
+.quiz-question { margin-bottom: 32px; }
+.quiz-question h4 { font-size: 15.5px; font-weight: 600; margin-bottom: 14px; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option {
+  background: white; border: 2px solid #E5E7EB;
+  border-radius: 10px; padding: 14px 18px;
+  cursor: pointer; font-size: 14.5px; transition: all 0.2s;
+  display: flex; align-items: center; gap: 12px;
+}
+.quiz-option:hover { border-color: var(--green-mid); background: var(--green-xlight); }
+.quiz-option.correct { border-color: var(--green); background: var(--green-light); color: var(--green); }
+.quiz-option.incorrect { border-color: var(--red); background: #FEF2F2; color: var(--red); }
+.quiz-option.disabled { pointer-events: none; opacity: 0.6; }
+.quiz-option.correct.disabled { opacity: 1; }
+.quiz-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #D1D5DB; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.quiz-option.correct .quiz-radio { border-color: var(--green); background: var(--green); color: white; font-size: 12px; }
+.quiz-option.correct .quiz-radio::after { content: '✓'; }
+.quiz-option.incorrect .quiz-radio { border-color: var(--red); background: var(--red); color: white; font-size: 11px; }
+.quiz-option.incorrect .quiz-radio::after { content: '✗'; }
+.quiz-feedback {
+  margin-top: 10px; padding: 12px 16px; border-radius: 8px;
+  font-size: 13.5px; display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--green-light); color: var(--green); }
+.quiz-feedback.incorrect { background: #FEF2F2; color: var(--red); }
+
+.quiz-submit {
+  background: var(--green); color: white; border: none;
+  padding: 14px 32px; border-radius: 50px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s, transform 0.1s;
+  margin-top: 8px; font-family: 'DM Sans', sans-serif;
+}
+.quiz-submit:hover { background: var(--green-mid); transform: translateY(-1px); }
+.quiz-result {
+  background: var(--green); color: white; border-radius: var(--radius);
+  padding: 24px; text-align: center; margin-top: 20px; display: none;
+}
+.quiz-result .score { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: var(--gold); }
+.quiz-result p { color: rgba(255,255,255,0.8); margin: 8px 0 0; }
+.quiz-result.show { display: block; }
+
+/* ── CASE STUDY ───────────────────────────────────────────────────────── */
+.case-study {
+  background: white; border-radius: var(--radius);
+  padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.case-study-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.case-study h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.case-study p { font-size: 14.5px; margin-bottom: 16px; }
+.case-reveal { display: none; background: var(--green-xlight); border-radius: 8px; padding: 14px 16px; font-size: 14px; border-left: 3px solid var(--green); }
+.case-reveal.show { display: block; }
+.reveal-btn {
+  background: var(--green); color: white; border: none;
+  padding: 10px 24px; border-radius: 50px; font-size: 13.5px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif;
+}
+.reveal-btn:hover { background: var(--green-mid); }
+
+/* ── REFLECTION ───────────────────────────────────────────────────────── */
+.reflection-q { margin-bottom: 20px; }
+.reflection-q label { font-size: 14.5px; font-weight: 600; display: block; margin-bottom: 8px; }
+.reflection-q textarea {
+  width: 100%; border: 2px solid #E5E7EB; border-radius: 10px;
+  padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  resize: vertical; min-height: 80px; transition: border-color 0.2s;
+  color: var(--charcoal);
+}
+.reflection-q textarea:focus { outline: none; border-color: var(--green); }
+
+/* ── SCORECARD ────────────────────────────────────────────────────────── */
+.scorecard-table { width: 100%; border-collapse: collapse; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin: 16px 0; }
+.scorecard-table thead { background: var(--green); color: white; }
+.scorecard-table th { padding: 12px 16px; font-size: 13px; font-weight: 600; text-align: left; }
+.scorecard-table td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid #F3F4F6; background: white; }
+.scorecard-table tr:last-child td { border-bottom: none; }
+.score-input {
+  display: flex; gap: 8px; align-items: center;
+}
+.score-btn {
+  width: 30px; height: 30px; border-radius: 50%; border: 2px solid #E5E7EB;
+  background: white; cursor: pointer; font-size: 13px; font-weight: 700;
+  transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+}
+.score-btn:hover { border-color: var(--green); }
+.score-btn.selected { background: var(--green); border-color: var(--green); color: white; }
+.yn-btn {
+  padding: 5px 14px; border-radius: 50px; border: 2px solid #E5E7EB;
+  background: white; cursor: pointer; font-size: 12px; font-weight: 600;
+  transition: all 0.2s;
+}
+.yn-btn:hover { border-color: var(--green); }
+.yn-btn.selected-yes { background: var(--green); border-color: var(--green); color: white; }
+.yn-btn.selected-no { background: var(--red); border-color: var(--red); color: white; }
+
+/* ── NAVIGATION BUTTONS ───────────────────────────────────────────────── */
+.module-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 64px 64px;
+  gap: 16px;
+}
+.nav-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; border: none; font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+.nav-btn-prev { background: #F3F4F6; color: var(--charcoal); }
+.nav-btn-prev:hover { background: #E5E7EB; }
+.nav-btn-next { background: var(--green); color: white; }
+.nav-btn-next:hover { background: var(--green-mid); transform: translateX(2px); }
+.nav-btn-next:disabled { opacity: 0.4; pointer-events: none; }
+.module-done-check {
+  background: var(--green-light); color: var(--green);
+  padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 600;
+}
+
+/* ── ROLE PLAY BUILDER ────────────────────────────────────────────────── */
+.role-scenario {
+  background: white; border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px;
+  cursor: pointer; border: 2px solid transparent;
+  transition: all 0.2s;
+}
+.role-scenario:hover { border-color: var(--green-mid); }
+.role-scenario.selected { border-color: var(--green); background: var(--green-xlight); }
+.role-scenario h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.role-scenario p { font-size: 14px; color: var(--gray); margin: 0; }
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ── COMPLETION BADGE ─────────────────────────────────────────────────── */
+.completion-banner {
+  background: linear-gradient(135deg, var(--green) 0%, #0F3D25 100%);
+  color: white; border-radius: var(--radius-lg);
+  padding: 48px; text-align: center; margin: 40px 0;
+}
+.completion-banner h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+.completion-banner p { color: rgba(255,255,255,0.75); font-size: 16px; max-width: 480px; margin: 0 auto 24px; }
+.badge-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
+.badge { background: rgba(200,153,42,0.15); border: 1px solid rgba(200,153,42,0.3); border-radius: 10px; padding: 16px 20px; text-align: center; min-width: 120px; }
+.badge-icon { font-size: 28px; margin-bottom: 6px; }
+.badge-lbl { font-size: 12px; color: rgba(255,255,255,0.65); }
+
+/* ── OVERLAY ──────────────────────────────────────────────────────────── */
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; }
+.overlay.show { display: block; }
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .hamburger { display: flex; }
+  .main { margin-left: 0; }
+  .module-content { padding: 32px 24px 60px; }
+  .module-nav { padding: 0 24px 48px; }
+  .page-header { padding: 80px 24px 48px; }
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .header-stats { gap: 12px; }
+  .stat-pill { padding: 8px 14px; }
+}
+
+@media (max-width: 540px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .activity-section { padding: 24px; }
+  .audio-section { padding: 24px; }
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.module-page.active .module-content > * {
+  animation: fadeUp 0.4s ease both;
+}
+.module-page.active .module-content > *:nth-child(1) { animation-delay: 0.05s; }
+.module-page.active .module-content > *:nth-child(2) { animation-delay: 0.10s; }
+.module-page.active .module-content > *:nth-child(3) { animation-delay: 0.15s; }
+.module-page.active .module-content > *:nth-child(4) { animation-delay: 0.20s; }
+.module-page.active .module-content > *:nth-child(5) { animation-delay: 0.25s; }
+
+/* ── TOOLTIP ──────────────────────────────────────────────────────────── */
+.tooltip-tag {
+  display: inline-block; background: var(--gold); color: var(--charcoal);
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 50px;
+  margin-left: 6px; vertical-align: middle;
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">EthioJobs</div>
+    <div class="sub">Brand Ambassador Training</div>
+  </div>
+  <div class="sidebar-progress">
+    <div class="progress-label">Your Progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-text" id="progressText">0 of 5 modules complete</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-item active" onclick="goTo(0)" id="nav-0">
+      <div class="nav-num">1</div>
+      <span>Who We Are</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="goTo(1)" id="nav-1">
+      <div class="nav-num">2</div>
+      <span>Services Guide</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="goTo(2)" id="nav-2">
+      <div class="nav-num">3</div>
+      <span>Pitch Framework</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="goTo(3)" id="nav-3">
+      <div class="nav-num">4</div>
+      <span>Handling Objections</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="goTo(4)" id="nav-4">
+      <div class="nav-num">5</div>
+      <span>Quick Reference</span>
+      <div class="nav-dot"></div>
+    </div>
+  </div>
+  <div class="sidebar-footer">CONFIDENTIAL · FOR INTERNAL USE ONLY</div>
+</nav>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+<button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- MODULE 0: HOME / COVER -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="module-page active" id="page-0">
+  <div class="page-header">
+    <div class="header-tag">Sales Playbook · Est. 1998</div>
+    <h1 class="header-title">Brand Ambassador<br>Training Module</h1>
+    <p class="header-sub">Master Every Service. Own Every Pitch. Close Every Deal. Your complete field guide to representing Ethiopia's #1 employment platform.</p>
+    <div class="header-stats">
+      <div class="stat-pill"><span class="num">1M+</span><span class="lbl">Candidates</span></div>
+      <div class="stat-pill"><span class="num">30K+</span><span class="lbl">Daily Visitors</span></div>
+      <div class="stat-pill"><span class="num">1998</span><span class="lbl">Established</span></div>
+      <div class="stat-pill"><span class="num">#1</span><span class="lbl">Platform in Ethiopia</span></div>
+    </div>
+  </div>
+  <div class="module-content">
+    <div class="module-header">
+      <div class="module-badge">1</div>
+      <div class="module-title-block">
+        <h2>Who We Are</h2>
+        <span>Module 1 of 5 · Approx. 15 min</span>
+      </div>
+    </div>
+
+    <h3>About Ethiojobs</h3>
+    <p>Ethiojobs is Ethiopia's leading digital employment platform, operating under Infomind Solutions PLC since 1998. For over two decades, we have played a key role in connecting employers with qualified talent using technology-driven recruitment solutions.</p>
+
+    <div class="stat-cards">
+      <div class="stat-card"><div class="big">1,000,000+</div><div class="lbl">Registered Candidates</div></div>
+      <div class="stat-card"><div class="big">30,000+</div><div class="lbl">Daily Visitors</div></div>
+      <div class="stat-card"><div class="big">1998</div><div class="lbl">Year Established</div></div>
+      <div class="stat-card"><div class="big">#1</div><div class="lbl">Platform in Ethiopia</div></div>
+    </div>
+
+    <h3>Your Role as a Brand Ambassador</h3>
+    <p>As a Brand Ambassador, you are the face of Ethiojobs in the field. Your goal is simple: grow our client base by creating awareness, building relationships, and matching the right Ethiojobs service to each company's needs.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Create Awareness</h4>
+        <p>Introduce Ethiojobs to companies that don't know us yet. Be visible in your territory.</p>
+        <div class="step-tip">💡 Visit at least 5 new companies per week.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Contact Decision Makers</h4>
+        <p>Reach out via calls, visits, emails, or LinkedIn. Target HR managers, CEOs, and Operations Directors.</p>
+        <div class="step-tip">💡 Ask for the person who handles recruitment — not the receptionist.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Pitch the Right Service</h4>
+        <p>Present one focused solution based on the company's specific hiring challenge. Never pitch everything at once.</p>
+        <div class="step-tip">💡 Listen first. Recommend second.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>Close & Follow Up</h4>
+        <p>Move from interest to signed contract. Track your pipeline and follow up consistently.</p>
+        <div class="step-tip">💡 Set a follow-up date before you leave every meeting.</div>
+      </div>
+    </div>
+
+    <h3>Your Elevator Pitch — 30 Seconds</h3>
+    <div class="pitch-box">
+      "Ethiojobs is Ethiopia's leading digital employment platform — operating since 1998 under Infomind Solutions PLC. With over one million registered candidates and 30,000 daily visitors, we connect employers to the best talent in Ethiopia. Beyond job posting, we offer full HR outsourcing, executive headhunting, and talent strategy services."
+    </div>
+
+    <!-- ACTIVITY 1 -->
+    <div class="activity-section">
+      <div class="activity-header">
+        <div class="activity-icon">✏️</div>
+        <div class="activity-title">Activity 1: Elevator Pitch Practice</div>
+      </div>
+      <div class="activity-meta">
+        <div class="activity-tag">⏱ 15 minutes</div>
+        <div class="activity-tag">👥 Pairs</div>
+        <div class="activity-tag">📋 Quiz + Scorecard</div>
+      </div>
+      <div class="activity-obj">🎯 <strong>Objective:</strong> Deliver the 30-second pitch confidently and from memory — without reading from notes.</div>
+
+      <h3 style="color:var(--charcoal);margin-top:0">Knowledge Check Quiz</h3>
+      <div id="quiz1">
+        <div class="quiz-question">
+          <h4>1. What year was Ethiojobs established?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="answerQuiz('q1','a',this,'wrong')"><div class="quiz-radio"></div>2005</div>
+            <div class="quiz-option" onclick="answerQuiz('q1','b',this,'correct')"><div class="quiz-radio"></div>1998</div>
+            <div class="quiz-option" onclick="answerQuiz('q1','c',this,'wrong')"><div class="quiz-radio"></div>2010</div>
+            <div class="quiz-option" onclick="answerQuiz('q1','d',this,'wrong')"><div class="quiz-radio"></div>2002</div>
+          </div>
+          <div class="quiz-feedback correct" id="fb-q1-correct">✓ Correct! Ethiojobs has been operating since 1998 — that's over 25 years of experience.</div>
+          <div class="quiz-feedback incorrect" id="fb-q1-wrong">Ethiojobs was established in 1998 under Infomind Solutions PLC.</div>
+        </div>
+        <div class="quiz-question">
+          <h4>2. How many daily visitors does Ethiojobs receive?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="answerQuiz('q2','a',this,'wrong')"><div class="quiz-radio"></div>10,000+</div>
+            <div class="quiz-option" onclick="answerQuiz('q2','b',this,'wrong')"><div class="quiz-radio"></div>50,000+</div>
+            <div class="quiz-option" onclick="answerQuiz('q2','c',this,'correct')"><div class="quiz-radio"></div>30,000+</div>
+            <div class="quiz-option" onclick="answerQuiz('q2','d',this,'wrong')"><div class="quiz-radio"></div>5,000+</div>
+          </div>
+          <div class="quiz-feedback correct" id="fb-q2-correct">✓ Correct! 30,000+ daily visitors — a key number to always include in your pitch.</div>
+          <div class="quiz-feedback incorrect" id="fb-q2-wrong">Ethiojobs receives 30,000+ daily visitors. Remember: 1M+ candidates, 30K+ daily visitors.</div>
+        </div>
+        <div class="quiz-question">
+          <h4>3. As a Brand Ambassador, what is your first step when engaging a new company?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="answerQuiz('q3','a',this,'wrong')"><div class="quiz-radio"></div>Immediately pitch all 7 services</div>
+            <div class="quiz-option" onclick="answerQuiz('q3','b',this,'wrong')"><div class="quiz-radio"></div>Ask for the CEO directly</div>
+            <div class="quiz-option" onclick="answerQuiz('q3','c',this,'correct')"><div class="quiz-radio"></div>Create awareness and understand their needs</div>
+            <div class="quiz-option" onclick="answerQuiz('q3','d',this,'wrong')"><div class="quiz-radio"></div>Send a brochure and wait</div>
+          </div>
+          <div class="quiz-feedback correct" id="fb-q3-correct">✓ Exactly right! Create awareness first, then listen before you recommend.</div>
+          <div class="quiz-feedback incorrect" id="fb-q3-wrong">Step 1 is to create awareness and understand their situation — never pitch without listening first.</div>
+        </div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Peer Scorecard</h3>
+      <p style="font-size:14px;color:var(--gray)">Use this when doing the live pair exercise with a colleague.</p>
+      <table class="scorecard-table">
+        <thead><tr><th>Criteria</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr><td>Did they mention Ethiojobs by name?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they state operating since 1998?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they mention 1M+ candidates?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they name at least 2 services?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they sound natural, not rehearsed?</td><td><div class="score-input" id="sc1">
+            <button class="score-btn" onclick="selectScore(this,'sc1')">1</button>
+            <button class="score-btn" onclick="selectScore(this,'sc1')">2</button>
+            <button class="score-btn" onclick="selectScore(this,'sc1')">3</button>
+            <button class="score-btn" onclick="selectScore(this,'sc1')">4</button>
+            <button class="score-btn" onclick="selectScore(this,'sc1')">5</button>
+          </div></td></tr>
+          <tr><td>Overall confidence and delivery?</td><td><div class="score-input" id="sc2">
+            <button class="score-btn" onclick="selectScore(this,'sc2')">1</button>
+            <button class="score-btn" onclick="selectScore(this,'sc2')">2</button>
+            <button class="score-btn" onclick="selectScore(this,'sc2')">3</button>
+            <button class="score-btn" onclick="selectScore(this,'sc2')">4</button>
+            <button class="score-btn" onclick="selectScore(this,'sc2')">5</button>
+          </div></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Reflection Questions</h3>
+      <div class="reflection-q"><label>Which part of the pitch felt most unnatural to say out loud?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+      <div class="reflection-q"><label>How would you adjust the pitch for a very formal client vs. a casual conversation?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+      <div class="reflection-q"><label>What one phrase do you want to make sure you never forget?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+    </div>
+  </div>
+  <div class="module-nav">
+    <div></div>
+    <button class="nav-btn nav-btn-next" onclick="goTo(1)">Next: Services Guide →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- MODULE 1: SERVICES -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="module-page" id="page-1">
+  <div class="page-header">
+    <div class="header-tag">Module 2</div>
+    <h1 class="header-title">Ethiojobs Services<br>Complete Guide</h1>
+    <p class="header-sub">7 distinct services across 3 categories. Know them all — but always recommend only the one that fits the client's need.</p>
+  </div>
+  <div class="module-content">
+    <div class="module-header">
+      <div class="module-badge">2</div>
+      <div class="module-title-block">
+        <h2>Ethiojobs Services</h2>
+        <span>Module 2 of 5 · Approx. 20 min</span>
+      </div>
+    </div>
+
+    <div class="service-category">A. ETHIOJOBS PLATFORM — Job Ads + ATS</div>
+    <p>An online platform where companies post jobs and reach over 1 million qualified candidates. Clients get access to the Applicant Tracking System (ATS), CV database, employer branding tools, and performance analytics.</p>
+    <div class="service-card">
+      <div class="service-card-header">
+        <h4>Ethiojobs Platform</h4>
+        <span class="service-badge">Job Ads + ATS</span>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-list">
+          <h5>What Clients Get</h5>
+          <ul><li>Job posting &amp; ATS</li><li>CV database access</li><li>Employer branding tools</li><li>Reports &amp; analytics</li></ul>
+        </div>
+        <div class="delivery-box">
+          <h5>Best For &amp; Strength</h5>
+          <p style="font-size:13.5px;margin:0">Companies hiring regularly, HR teams needing wide candidate visibility.</p>
+          <p style="font-size:13.5px;margin:8px 0 0"><strong>Key Strength:</strong> 1M+ candidates, 30,000 daily visitors — Ethiopia's largest talent pool.</p>
+        </div>
+      </div>
+      <div class="example-box"><div class="ex-label">Example</div>A company needs 10 sales agents urgently — they post on Ethiojobs and immediately reach 30,000 daily visitors across Ethiopia.</div>
+    </div>
+
+    <div class="service-category">B. TALENT SEARCH — Recruitment Services</div>
+    <p>Premium recruitment support where Ethiojobs does the hiring work on your behalf. Five specialised sub-services:</p>
+
+    <div class="service-card">
+      <div class="service-card-header"><h4>B1. Executive Search (Headhunting)</h4><span class="service-badge">Senior Roles</span></div>
+      <p>A specialist headhunting service for senior and executive-level roles. We proactively identify and approach top talent using our professional network, proprietary database, and referrals — with confidentiality applied where the client requires it.</p>
+      <div class="feature-grid">
+        <div class="feature-list"><h5>Key Features</h5><ul><li>Proactive candidate outreach</li><li>Networks, database &amp; referrals</li><li>Confidentiality on client request</li><li>Detailed candidate profiles</li><li>Full interview support</li></ul></div>
+        <div class="delivery-box"><h5>Delivery &amp; Output</h5><div class="delivery-num">3–5 candidates</div><p style="font-size:13px;margin:4px 0 8px">Shortlist delivered in 10 working days</p><p style="font-size:13px;margin:0"><strong>Best for:</strong> CEOs, CFOs, Directors, Senior Managers</p></div>
+      </div>
+      <div class="example-box"><div class="ex-label">Example</div>A bank needs to hire a new CFO — we proactively identify and approach the strongest candidates in the market and deliver 3–5 fully vetted profiles in 10 days.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-card-header"><h4>B2. Standard Recruitment</h4><span class="service-badge">Mid-Level Roles</span></div>
+      <p>Full end-to-end recruitment support for junior and mid-level roles. We handle everything from advertising to delivering a final shortlist.</p>
+      <div class="feature-grid">
+        <div class="feature-list"><h5>What We Do</h5><ul><li>Job advertising (platform + social)</li><li>Multi-channel candidate sourcing</li><li>CV screening &amp; vetting</li><li>Testing &amp; assessment support</li><li>Detailed reporting &amp; feedback</li></ul></div>
+        <div class="delivery-box"><h5>Delivery &amp; Output</h5><div class="delivery-num">5 candidates</div><p style="font-size:13px;margin:4px 0 8px">Shortlist delivered in 10 working days</p><p style="font-size:13px;margin:0"><strong>Best for:</strong> Engineers, accountants, officers, sales staff</p></div>
+      </div>
+      <div class="example-box"><div class="ex-label">Example</div>A company needs to hire a Marketing Officer but lacks HR capacity — we manage the entire process from job posting to final shortlist.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-card-header"><h4>B3. Talent Mapping</h4><span class="service-badge">Market Intelligence</span></div>
+      <p>A market intelligence service that gives companies a clear picture of the talent landscape before they start hiring.</p>
+      <div class="feature-grid">
+        <div class="feature-list"><h5>What We Provide</h5><ul><li>Top talent identification</li><li>Competitor talent analysis</li><li>Salary surveys (salary, benefits, bonuses)</li><li>Strategic hiring recommendations</li></ul></div>
+        <div class="delivery-box"><h5>Delivery</h5><div class="delivery-num">1 month</div><p style="font-size:13px;margin:4px 0 8px">Full intelligence report</p><p style="font-size:13px;margin:0"><strong>Best for:</strong> Companies planning future hires or entering new markets</p></div>
+      </div>
+      <div class="example-box"><div class="ex-label">Example</div>A new company entering Addis Ababa needs to know what salary to offer engineers — we deliver a complete salary survey and market analysis.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-card-header"><h4>B4. Assessment Centre</h4><span class="service-badge">Candidate Evaluation</span></div>
+      <p>A structured system to evaluate candidates fairly, accurately, and consistently — especially useful for competitive or large-scale hiring.</p>
+      <div class="feature-list" style="margin:12px 0"><ul><li>Custom-designed tests and practical exercises</li><li>Standardised scoring system for objective comparison</li><li>Assessor training — we train your team to evaluate effectively</li><li>Ensures fair, defensible, and legally sound hiring decisions</li></ul></div>
+      <div class="example-box"><div class="ex-label">Example</div>A government institution hiring 50 officers needs a fair, competitive process — we design the full assessment system including exercises, scoring rubrics, and assessor training.</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-card-header"><h4>B5. Longlisting Service</h4><span class="service-badge">High Volume</span></div>
+      <p>When a company is overwhelmed by high application volumes, we filter out unqualified applicants and deliver only qualified candidates — fast.</p>
+      <div class="feature-grid">
+        <div class="feature-list"><h5>Process</h5><ul><li>We post the job on Ethiojobs</li><li>We review all incoming applications</li><li>We filter against job criteria</li><li>You receive only qualified candidates</li></ul></div>
+        <div class="delivery-box"><h5>Output</h5><div class="delivery-num">3 days</div><p style="font-size:13px;margin:4px 0 8px">Qualified-only longlist after job closing</p><p style="font-size:13px;margin:0"><strong>Best for:</strong> Roles receiving 100+ applications</p></div>
+      </div>
+      <div class="example-box"><div class="ex-label">Example</div>A company receives 600 applications in 2 days — we review all of them and deliver only the qualified candidates within 3 days of job closing.</div>
+    </div>
+
+    <div class="service-category">C. PREMIUM JOBS — Full HR Outsourcing (Est. 2021)</div>
+    <p>Premium Jobs is our complete personnel management solution. We take over the entire HR function so companies can focus on their core business.</p>
+    <div class="service-card">
+      <div class="service-card-header"><h4>Premium Jobs</h4><span class="service-badge">HR Outsourcing</span></div>
+      <div class="feature-grid">
+        <div class="feature-list"><h5>Services Covered</h5><ul><li>Employment contracts &amp; onboarding</li><li>Payroll management &amp; processing</li><li>Tax handling &amp; compliance</li><li>Insurance management</li><li>Employee relations &amp; performance tracking</li><li>Disciplinary actions &amp; legal compliance</li><li>Training coordination &amp; logistics</li></ul></div>
+        <div class="feature-list"><h5>Who It's Best For</h5><ul><li>Companies wanting to outsource HR entirely</li><li>Startups without an HR team</li><li>Companies managing a large or dispersed workforce</li><li>International companies operating in Ethiopia</li></ul></div>
+      </div>
+      <div class="example-box"><div class="ex-label">Example</div>A fast-growing startup doesn't want to build an HR department — Premium Jobs handles all contracts, payroll, tax, insurance, and employee relations so they can focus entirely on growth.</div>
+    </div>
+
+    <!-- ACTIVITY 2 -->
+    <div class="activity-section">
+      <div class="activity-header"><div class="activity-icon">✏️</div><div class="activity-title">Activity 2: Service Match Challenge</div></div>
+      <div class="activity-meta"><div class="activity-tag">⏱ 20 minutes</div><div class="activity-tag">👥 Full team</div><div class="activity-tag">🧩 Case study</div></div>
+      <div class="activity-obj">🎯 <strong>Objective:</strong> Instantly match a client's problem to the right Ethiojobs service — no hesitation, no guessing.</div>
+
+      <h3 style="color:var(--charcoal);margin-top:0">Case Study Scenarios</h3>
+      <p style="font-size:14px;color:var(--gray)">Read each scenario. Choose the correct service, then reveal the answer.</p>
+
+      <div class="case-study">
+        <div class="case-study-label">Scenario 1</div>
+        <h4>"We have 400 CVs and no time to screen them."</h4>
+        <p>An NGO posted a finance role last week and was flooded with applicants. Their HR team is overwhelmed and needs help fast.</p>
+        <button class="reveal-btn" onclick="revealCase(this)">Reveal Answer</button>
+        <div class="case-reveal"><strong>✓ Longlisting Service</strong> — We review all CVs, filter against criteria, and deliver only qualified candidates within 3 days of job closing.</div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-label">Scenario 2</div>
+        <h4>"We want to hire a Finance Director — discreetly."</h4>
+        <p>A commercial bank wants to replace their CFO but cannot make this public. They need a trusted partner to handle it quietly.</p>
+        <button class="reveal-btn" onclick="revealCase(this)">Reveal Answer</button>
+        <div class="case-reveal"><strong>✓ Executive Search (Headhunting)</strong> — We proactively approach the best candidates via our network and referrals, with confidentiality where required.</div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-label">Scenario 3</div>
+        <h4>"We hate dealing with payroll and compliance every month."</h4>
+        <p>A fast-growing tech startup with 30 employees has no HR function. They spend too much time on admin and want to focus on product.</p>
+        <button class="reveal-btn" onclick="revealCase(this)">Reveal Answer</button>
+        <div class="case-reveal"><strong>✓ Premium Jobs (HR Outsourcing)</strong> — We take over payroll, contracts, tax, insurance, and employee relations entirely.</div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-label">Scenario 4</div>
+        <h4>"We're entering a new city and don't know what salary to offer engineers."</h4>
+        <p>A construction company is expanding to Hawassa and needs market intelligence before hiring begins.</p>
+        <button class="reveal-btn" onclick="revealCase(this)">Reveal Answer</button>
+        <div class="case-reveal"><strong>✓ Talent Mapping</strong> — We deliver a full market intelligence report including salary surveys, competitor analysis, and strategic hiring recommendations within 1 month.</div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Reflection</h3>
+      <div class="reflection-q"><label>Which scenario caused the most uncertainty? Why?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+      <div class="reflection-q"><label>Are there any services you're still unclear about? What's your remaining question?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+    </div>
+  </div>
+  <div class="module-nav">
+    <button class="nav-btn nav-btn-prev" onclick="goTo(0)">← Who We Are</button>
+    <button class="nav-btn nav-btn-next" onclick="goTo(2)">Next: Pitch Framework →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- MODULE 2: PITCH FRAMEWORK -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="module-page" id="page-2">
+  <div class="page-header">
+    <div class="header-tag">Module 3</div>
+    <h1 class="header-title">The P.I.T.C.H.<br>Framework</h1>
+    <p class="header-sub">Follow this 5-step structure in every client meeting. Adapt the words — but always follow the structure.</p>
+  </div>
+  <div class="module-content">
+    <div class="module-header">
+      <div class="module-badge">3</div>
+      <div class="module-title-block">
+        <h2>The Pitch Framework</h2>
+        <span>Module 3 of 5 · Approx. 20 min</span>
+      </div>
+    </div>
+
+    <!-- AUDIO PLAYER -->
+    <div class="audio-section">
+      <h3>🎧 Audio Demo: How to Pitch Like a Pro</h3>
+      <p class="audio-desc">Listen to a full P.I.T.C.H. demonstration. Pay attention to tone, pacing, pauses, and how the conversation is closed professionally.</p>
+
+      <div class="audio-player">
+        <div class="audio-track-info">
+          <div class="audio-track-title">Full P.I.T.C.H. Client Meeting Demo</div>
+          <div class="audio-track-sub">Narrator: Senior Brand Ambassador · Running time: ~4 minutes</div>
+        </div>
+
+        <div class="audio-controls">
+          <button class="audio-btn" onclick="skipAudio(-10)" title="Rewind 10s">⏮ 10s</button>
+          <button class="audio-btn play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+          <button class="audio-btn" onclick="skipAudio(10)" title="Forward 10s">10s ⏭</button>
+          <div class="audio-progress">
+            <div class="audio-bar" id="audioBar" onclick="seekAudio(event)">
+              <div class="audio-bar-fill" id="audioFill"></div>
+              <div class="audio-bar-thumb" id="audioThumb"></div>
+            </div>
+            <span class="audio-time" id="audioTime">0:00 / 4:00</span>
+          </div>
+        </div>
+
+        <div class="speed-controls">
+          <span style="font-size:11px;color:rgba(255,255,255,0.4);margin-right:4px">Speed:</span>
+          <button class="speed-btn" onclick="setSpeed(0.75,this)">0.75×</button>
+          <button class="speed-btn active" onclick="setSpeed(1,this)">1×</button>
+          <button class="speed-btn" onclick="setSpeed(1.25,this)">1.25×</button>
+          <button class="speed-btn" onclick="setSpeed(1.5,this)">1.5×</button>
+        </div>
+      </div>
+
+      <div style="margin-top:20px">
+        <p style="font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">Annotated Coaching Points</p>
+        <div class="audio-annotations">
+          <div class="annotation" onclick="jumpTo(0)" id="ann-0">
+            <div class="annotation-time">0:00</div>
+            <div class="annotation-text"><strong>P — Probe</strong><span>Notice how the ambassador opens with a question, not a pitch. Warm, unhurried tone.</span></div>
+          </div>
+          <div class="annotation" onclick="jumpTo(48)" id="ann-1">
+            <div class="annotation-time">0:48</div>
+            <div class="annotation-text"><strong>I — Introduce with Credibility</strong><span>One fact, delivered with confidence. No brochure. No reading. Short pause after "1998."</span></div>
+          </div>
+          <div class="annotation" onclick="jumpTo(96)" id="ann-2">
+            <div class="annotation-time">1:36</div>
+            <div class="annotation-text"><strong>T — Tailor to One Service</strong><span>Based on what was heard, ONE service is recommended. Notice: no extras mentioned.</span></div>
+          </div>
+          <div class="annotation" onclick="jumpTo(144)" id="ann-3">
+            <div class="annotation-time">2:24</div>
+            <div class="annotation-text"><strong>C — Close with a Question</strong><span>"When works for you?" not "Do you want it?" Forward-assuming. Confident but not pushy.</span></div>
+          </div>
+          <div class="annotation" onclick="jumpTo(192)" id="ann-4">
+            <div class="annotation-time">3:12</div>
+            <div class="annotation-text"><strong>H — Handle Hesitation Calmly</strong><span>Objection arrives. Ambassador stays calm, acknowledges, then pivots to a question.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pitch-steps">
+      <div class="pitch-step">
+        <div class="pitch-letter">P</div>
+        <div class="pitch-step-content">
+          <h4>PROBE — Ask First, Talk Second</h4>
+          <p>Understand their situation before presenting anything. The more you know about their pain, the better your recommendation.</p>
+          <div class="pitch-script">"Before I tell you about us — may I ask, how do you currently find candidates when you are hiring? And what is the biggest challenge you face in that process?"</div>
+          <div class="pitch-tip">Listen for: slow hiring, too many unqualified CVs, HR overload, confidential searches, payroll headaches. These are your entry points.</div>
+        </div>
+      </div>
+      <div class="pitch-step">
+        <div class="pitch-letter">I</div>
+        <div class="pitch-step-content">
+          <h4>INTRODUCE — Lead with Credibility</h4>
+          <p>Keep it short. One powerful fact beats a long explanation. Never read off a brochure.</p>
+          <div class="pitch-script">"Ethiojobs has been operating since 1998 — we are Ethiopia's number one employment platform with over a million registered candidates. Thousands of organisations trust us, from small businesses to large banks and NGOs."</div>
+          <div class="pitch-tip">Deliver this confidently and from memory. It must sound natural, not rehearsed.</div>
+        </div>
+      </div>
+      <div class="pitch-step">
+        <div class="pitch-letter">T</div>
+        <div class="pitch-step-content">
+          <h4>TAILOR — Match the Solution to Their Pain</h4>
+          <p>Based on what they told you, present ONE service. Never pitch everything at once — it creates confusion and loses the sale.</p>
+          <div class="pitch-script">Too many applicants? → Longlisting. Senior hire? → Executive Search. HR/payroll headaches? → Premium Jobs. Regular hiring? → The Platform.</div>
+          <div class="pitch-tip">One problem = one solution. Always.</div>
+        </div>
+      </div>
+      <div class="pitch-step">
+        <div class="pitch-letter">C</div>
+        <div class="pitch-step-content">
+          <h4>CLOSE — Ask for the Next Step</h4>
+          <p>Never leave a meeting without a clear next action. Always ask for a decision or a commitment to the next step.</p>
+          <div class="pitch-script">"Based on what you have shared, I believe [Service Name] would save your team significant time and cost. Can we schedule a 30-minute call this week so I can send you a formal proposal?"</div>
+          <div class="pitch-tip">Never ask "Do you want it?" Instead ask "When works for you?" — it assumes forward momentum.</div>
+        </div>
+      </div>
+      <div class="pitch-step">
+        <div class="pitch-letter">H</div>
+        <div class="pitch-step-content">
+          <h4>HANDLE — Respond to Hesitation Calmly</h4>
+          <p>Expect objections in every meeting. They are normal — not rejections. Treat them as questions that need answers.</p>
+          <div class="pitch-script">"That is a fair point. Many companies feel the same way before they work with us. Can I share what we did for a similar company in your industry?"</div>
+          <div class="pitch-tip">See Module 4 for word-for-word objection responses.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Cold Call Phone Script</h3>
+    <p>Use this script when calling a company for the first time:</p>
+    <div class="pitch-box">"Good morning, may I please speak with your HR Manager or whoever handles recruitment?" [Once connected] "Hello, my name is [Your Name] — I am a Brand Ambassador with Ethiojobs, Ethiopia's leading employment platform. I am reaching out because we work with companies like yours to make hiring faster, easier, and more cost-effective. Do you have just 2 minutes? I would love to ask you one quick question about how you currently hire."</div>
+
+    <!-- ACTIVITY 3 -->
+    <div class="activity-section">
+      <div class="activity-header"><div class="activity-icon">✏️</div><div class="activity-title">Activity 3: Cold Call Role Play</div></div>
+      <div class="activity-meta"><div class="activity-tag">⏱ 15 minutes</div><div class="activity-tag">👥 Pairs</div><div class="activity-tag">🎭 Role play</div></div>
+      <div class="activity-obj">🎯 <strong>Objective:</strong> Practise the cold call script until it sounds natural — then try it without the script at all.</div>
+
+      <h3 style="color:var(--charcoal);margin-top:0">Quiz: Know Your Script</h3>
+      <div class="quiz-question">
+        <h4>In the cold call, what should you ask for FIRST when the call is answered?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz('q4','a',this,'wrong')"><div class="quiz-radio"></div>Ask to speak to the CEO</div>
+          <div class="quiz-option" onclick="answerQuiz('q4','b',this,'correct')"><div class="quiz-radio"></div>Ask to speak with the HR Manager or whoever handles recruitment</div>
+          <div class="quiz-option" onclick="answerQuiz('q4','c',this,'wrong')"><div class="quiz-radio"></div>Immediately introduce yourself and pitch</div>
+          <div class="quiz-option" onclick="answerQuiz('q4','d',this,'wrong')"><div class="quiz-radio"></div>Ask if they are hiring right now</div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-q4-correct">✓ Correct! Always route to the right person first — not the receptionist, not the CEO directly.</div>
+        <div class="quiz-feedback incorrect" id="fb-q4-wrong">Always ask to speak with the HR Manager or whoever handles recruitment — they are your target contact.</div>
+      </div>
+      <div class="quiz-question">
+        <h4>What is the purpose of asking for "just 2 minutes" in the cold call?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz('q5','a',this,'wrong')"><div class="quiz-radio"></div>To complete your pitch in exactly 2 minutes</div>
+          <div class="quiz-option" onclick="answerQuiz('q5','b',this,'correct')"><div class="quiz-radio"></div>It's a low-risk ask that's easy to say yes to — you can extend once they're engaged</div>
+          <div class="quiz-option" onclick="answerQuiz('q5','c',this,'wrong')"><div class="quiz-radio"></div>To demonstrate your time management skills</div>
+          <div class="quiz-option" onclick="answerQuiz('q5','d',this,'wrong')"><div class="quiz-radio"></div>Because 2 minutes is all you need</div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-q5-correct">✓ Exactly! Low-threat entry. Once they say yes to 2 minutes, you have an open door.</div>
+        <div class="quiz-feedback incorrect" id="fb-q5-wrong">Asking for "2 minutes" reduces resistance — it's an easy yes. You can always extend once they're engaged.</div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Role Play Scenarios</h3>
+      <p style="font-size:14px;color:var(--gray)">Select a scenario and practice responding. Your partner adds one of these complications:</p>
+      <div class="scenario-grid">
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🛡 "She's in a meeting — call back tomorrow."</h4><p>How do you stay in the door without being pushy?</p></div>
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🛡 "We don't take sales calls."</h4><p>How do you reframe this as a value conversation, not a sales call?</p></div>
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🛡 "Can you just send an email?"</h4><p>How do you redirect while still getting a foot in the door?</p></div>
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🛡 "We already use another recruitment firm."</h4><p>How do you position Ethiojobs as complementary, not competitive?</p></div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Reflection</h3>
+      <div class="reflection-q"><label>What was the hardest moment in the call?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+      <div class="reflection-q"><label>How would you adapt this script for WhatsApp or email?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+    </div>
+  </div>
+  <div class="module-nav">
+    <button class="nav-btn nav-btn-prev" onclick="goTo(1)">← Services Guide</button>
+    <button class="nav-btn nav-btn-next" onclick="goTo(3)">Next: Handling Objections →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- MODULE 3: OBJECTIONS -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="module-page" id="page-3">
+  <div class="page-header">
+    <div class="header-tag">Module 4</div>
+    <h1 class="header-title">Handling<br>Objections</h1>
+    <p class="header-sub">Every objection is a question in disguise. When a client pushes back, they are often asking: "Convince me."</p>
+  </div>
+  <div class="module-content">
+    <div class="module-header">
+      <div class="module-badge">4</div>
+      <div class="module-title-block">
+        <h2>Handling Objections</h2>
+        <span>Module 4 of 5 · Approx. 20 min</span>
+      </div>
+    </div>
+    <p>Use the responses below — adapt them naturally, never read them word for word. Click each objection to reveal the response.</p>
+
+    <div class="objection-list">
+      <div class="objection-item" id="obj1">
+        <div class="objection-header" onclick="toggleObj('obj1')">
+          <div class="objection-q">"We already use another platform / we post on Telegram."</div>
+          <div class="objection-toggle">+</div>
+        </div>
+        <div class="objection-answer">That is great — many of our clients use multiple channels too. The difference is reach and quality. Ethiojobs has over 1 million registered candidates and 30,000 daily visitors, which means when you post a job, you get significantly more qualified applicants than a Telegram post will ever reach. Would you be open to running one position through us to compare results?</div>
+      </div>
+      <div class="objection-item" id="obj2">
+        <div class="objection-header" onclick="toggleObj('obj2')">
+          <div class="objection-q">"It is too expensive."</div>
+          <div class="objection-toggle">+</div>
+        </div>
+        <div class="objection-answer">I completely understand — budget matters. Let me ask: how much time does your HR team spend screening CVs right now? What is the cost of a wrong hire? Our service often pays for itself in the first hiring cycle. Can I show you what companies your size typically invest and what they get back?</div>
+      </div>
+      <div class="objection-item" id="obj3">
+        <div class="objection-header" onclick="toggleObj('obj3')">
+          <div class="objection-q">"We are not hiring right now."</div>
+          <div class="objection-toggle">+</div>
+        </div>
+        <div class="objection-answer">Totally understand — and that is actually a great time to learn about us, with no pressure. When you do need to hire fast, you will already know exactly who to call. Can I leave you with our brochure and connect on LinkedIn?</div>
+      </div>
+      <div class="objection-item" id="obj4">
+        <div class="objection-header" onclick="toggleObj('obj4')">
+          <div class="objection-q">"We handle recruitment internally."</div>
+          <div class="objection-toggle">+</div>
+        </div>
+        <div class="objection-answer">That makes sense — and many companies do. Even strong internal teams use us for hard-to-fill senior roles (Executive Search) or high-volume overflow hiring. Can I share how that works?</div>
+      </div>
+      <div class="objection-item" id="obj5">
+        <div class="objection-header" onclick="toggleObj('obj5')">
+          <div class="objection-q">"I need to talk to my manager."</div>
+          <div class="objection-toggle">+</div>
+        </div>
+        <div class="objection-answer">Of course — that is completely normal. To make it easy, can I prepare a short one-page proposal you can share with them? It will have everything they need to decide. What is the best email to send that to?</div>
+      </div>
+      <div class="objection-item" id="obj6">
+        <div class="objection-header" onclick="toggleObj('obj6')">
+          <div class="objection-q">"I have not heard of Ethiojobs / I do not trust it."</div>
+          <div class="objection-toggle">+</div>
+        </div>
+        <div class="objection-answer">That is fair — let me share something quickly. Ethiojobs has been operating since 1998, over 25 years, under Infomind Solutions PLC. We are trusted by thousands of organisations in Ethiopia, including banks, NGOs, and government institutions. Would client references help build confidence?</div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY 4 -->
+    <div class="activity-section">
+      <div class="activity-header"><div class="activity-icon">✏️</div><div class="activity-title">Activity 4: Objection Handling Role Play</div></div>
+      <div class="activity-meta"><div class="activity-tag">⏱ 25 minutes</div><div class="activity-tag">👥 Trios</div><div class="activity-tag">🎭 Role play + Observer</div></div>
+      <div class="activity-obj">🎯 <strong>Objective:</strong> Respond to common objections calmly and convincingly — in your own words, without panic.</div>
+
+      <h3 style="color:var(--charcoal);margin-top:0">Objection Quiz</h3>
+      <div class="quiz-question">
+        <h4>A client says "It's too expensive." What should your FIRST move be?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz('q6','a',this,'wrong')"><div class="quiz-radio"></div>Offer a discount immediately</div>
+          <div class="quiz-option" onclick="answerQuiz('q6','b',this,'correct')"><div class="quiz-radio"></div>Acknowledge the concern, then reframe cost using questions about their current problems</div>
+          <div class="quiz-option" onclick="answerQuiz('q6','c',this,'wrong')"><div class="quiz-radio"></div>Tell them the price is fixed and non-negotiable</div>
+          <div class="quiz-option" onclick="answerQuiz('q6','d',this,'wrong')"><div class="quiz-radio"></div>Move on to a different service</div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-q6-correct">✓ Correct! Acknowledge first, never jump to defence. Then reframe the cost vs. the cost of NOT solving their problem.</div>
+        <div class="quiz-feedback incorrect" id="fb-q6-wrong">Always acknowledge first, then pivot. Ask about time spent screening CVs, cost of a bad hire — reframe the value.</div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Observer Scorecard</h3>
+      <table class="scorecard-table">
+        <thead><tr><th>Criteria</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr><td>Did they stay calm (not defensive)?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they acknowledge the concern first?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they pivot to a benefit or question?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they end with a question?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+          <tr><td>Did they avoid sounding scripted?</td><td><div class="score-input" id="sc3">
+            <button class="score-btn" onclick="selectScore(this,'sc3')">1</button>
+            <button class="score-btn" onclick="selectScore(this,'sc3')">2</button>
+            <button class="score-btn" onclick="selectScore(this,'sc3')">3</button>
+            <button class="score-btn" onclick="selectScore(this,'sc3')">4</button>
+            <button class="score-btn" onclick="selectScore(this,'sc3')">5</button>
+          </div></td></tr>
+          <tr><td>Would a real client be satisfied?</td><td><div class="score-input" id="sc4">
+            <button class="score-btn" onclick="selectScore(this,'sc4')">1</button>
+            <button class="score-btn" onclick="selectScore(this,'sc4')">2</button>
+            <button class="score-btn" onclick="selectScore(this,'sc4')">3</button>
+            <button class="score-btn" onclick="selectScore(this,'sc4')">4</button>
+            <button class="score-btn" onclick="selectScore(this,'sc4')">5</button>
+          </div></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Key Reminders</h3>
+      <div class="feature-list" style="margin-bottom:20px"><ul>
+        <li>Acknowledge before you answer — never jump straight to defence.</li>
+        <li>End every response with a question to keep momentum going.</li>
+        <li>Adapt the language to your own voice — never read word for word.</li>
+      </ul></div>
+
+      <div class="reflection-q"><label>Which objection feels hardest for you personally? Why?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+      <div class="reflection-q"><label>Write your own version of one response — in your own words, as you would actually say it.</label><textarea placeholder="Write your version here..." style="min-height:100px"></textarea></div>
+    </div>
+  </div>
+  <div class="module-nav">
+    <button class="nav-btn nav-btn-prev" onclick="goTo(2)">← Pitch Framework</button>
+    <button class="nav-btn nav-btn-next" onclick="goTo(4)">Next: Quick Reference →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- MODULE 4: QUICK REFERENCE + FINAL ACTIVITY -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="module-page" id="page-4">
+  <div class="page-header">
+    <div class="header-tag">Module 5</div>
+    <h1 class="header-title">Quick Reference<br>Service Match Guide</h1>
+    <p class="header-sub">Use this table in the field. When a client describes their problem, match it to the right service instantly.</p>
+  </div>
+  <div class="module-content">
+    <div class="module-header">
+      <div class="module-badge">5</div>
+      <div class="module-title-block">
+        <h2>Quick Reference Guide</h2>
+        <span>Module 5 of 5 · Approx. 15 min</span>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead><tr><th>If the client says...</th><th>Recommend</th><th>Key fact to mention</th></tr></thead>
+      <tbody>
+        <tr><td><em>"We need to fill multiple roles fast"</em></td><td class="service-name">Ethiojobs Platform (Job Ads)</td><td>1M+ candidates, 30K daily visitors</td></tr>
+        <tr><td><em>"We need a CEO / CFO / Director — quietly"</em></td><td class="service-name">Executive Search</td><td>Targeted headhunting, 3–5 candidates in 10 days</td></tr>
+        <tr><td><em>"We need an officer / engineer / accountant"</em></td><td class="service-name">Standard Recruitment</td><td>Full process, shortlist of 5 in 10 days</td></tr>
+        <tr><td><em>"We don't know what salary to offer"</em></td><td class="service-name">Talent Mapping</td><td>Salary survey + market intelligence in 1 month</td></tr>
+        <tr><td><em>"We need to evaluate candidates fairly"</em></td><td class="service-name">Assessment Centre</td><td>Custom tests, scoring, assessor training</td></tr>
+        <tr><td><em>"We have too many applications to review"</em></td><td class="service-name">Longlisting</td><td>We screen all CVs, deliver qualified list in 3 days</td></tr>
+        <tr><td><em>"We hate managing HR / payroll"</em></td><td class="service-name">Premium Jobs (HR Outsourcing)</td><td>We handle payroll, tax, contracts, compliance</td></tr>
+      </tbody>
+    </table>
+
+    <div class="golden-rule"><strong>GOLDEN RULE:</strong> Never present every service at once. Ask first, listen carefully, then recommend ONE solution that solves their specific problem. A focused pitch wins more than a catalogue.</div>
+
+    <!-- ACTIVITY 5 -->
+    <div class="activity-section">
+      <div class="activity-header"><div class="activity-icon">✏️</div><div class="activity-title">Activity 5: Full Client Meeting Simulation</div></div>
+      <div class="activity-meta"><div class="activity-tag">⏱ 30–40 minutes</div><div class="activity-tag">👥 Pairs + Trainer</div><div class="activity-tag">🎭 Full simulation</div></div>
+      <div class="activity-obj">🎯 <strong>Objective:</strong> Run a complete simulated client meeting from Probe to Close using the full P.I.T.C.H. framework.</div>
+
+      <h3 style="color:var(--charcoal);margin-top:0">Final Knowledge Quiz</h3>
+      <div class="quiz-question">
+        <h4>A client says they have 600 applicants and don't have time to screen. Which service do you recommend?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz('q7','a',this,'wrong')"><div class="quiz-radio"></div>Standard Recruitment</div>
+          <div class="quiz-option" onclick="answerQuiz('q7','b',this,'wrong')"><div class="quiz-radio"></div>Assessment Centre</div>
+          <div class="quiz-option" onclick="answerQuiz('q7','c',this,'correct')"><div class="quiz-radio"></div>Longlisting Service</div>
+          <div class="quiz-option" onclick="answerQuiz('q7','d',this,'wrong')"><div class="quiz-radio"></div>Talent Mapping</div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-q7-correct">✓ Perfect! Longlisting is built for exactly this: high volumes, fast turnaround, qualified-only output.</div>
+        <div class="quiz-feedback incorrect" id="fb-q7-wrong">Longlisting is the right answer — we review all CVs, filter against criteria, and deliver a qualified list in 3 days.</div>
+      </div>
+      <div class="quiz-question">
+        <h4>What is the correct closing question according to the P.I.T.C.H. framework?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz('q8','a',this,'wrong')"><div class="quiz-radio"></div>"Do you want to proceed?"</div>
+          <div class="quiz-option" onclick="answerQuiz('q8','b',this,'correct')"><div class="quiz-radio"></div>"When works for you for a 30-minute call this week?"</div>
+          <div class="quiz-option" onclick="answerQuiz('q8','c',this,'wrong')"><div class="quiz-radio"></div>"Would you like a discount?"</div>
+          <div class="quiz-option" onclick="answerQuiz('q8','d',this,'wrong')"><div class="quiz-radio"></div>"Can I send you our full brochure?"</div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-q8-correct">✓ Exactly! "When works for you?" assumes momentum and avoids giving them a yes/no decision.</div>
+        <div class="quiz-feedback incorrect" id="fb-q8-wrong">Never ask "Do you want it?" Instead, assume the next step and ask WHEN — not IF — it should happen.</div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Client Profile Cards</h3>
+      <p style="font-size:14px;color:var(--gray)">Trainer assigns one per round. Ambassador runs the full P.I.T.C.H. meeting — probe, introduce, tailor, close, and handle at least one objection.</p>
+      <div class="scenario-grid">
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🏦 Client A: Mid-size Bank</h4><p>Needs a new Operations Director urgently and wants it kept quiet. Has an internal HR team.</p></div>
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🚀 Client B: Fast-growing Tech Startup</h4><p>10 employees, no HR department. Struggling with payroll, contracts, and compliance every month.</p></div>
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🌍 Client C: NGO</h4><p>Just posted a job and received 500 CVs in 3 days. Their HR team is overwhelmed and needs help fast.</p></div>
+        <div class="role-scenario" onclick="selectScenario(this)"><h4>🏭 Client D: Manufacturing Company</h4><p>Expanding to a new region — doesn't know what salary to offer engineers to attract top talent.</p></div>
+      </div>
+
+      <h3 style="color:var(--charcoal);margin-top:24px">Trainer Evaluation</h3>
+      <table class="scorecard-table">
+        <thead><tr><th>P.I.T.C.H. Evaluation Criteria</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr><td><strong>P</strong> — Did they probe before pitching?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">✓</button><button class="yn-btn" onclick="toggleYN(this,'no')">✗</button></div></td></tr>
+          <tr><td><strong>I</strong> — Did they introduce with a strong credibility fact?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">✓</button><button class="yn-btn" onclick="toggleYN(this,'no')">✗</button></div></td></tr>
+          <tr><td><strong>T</strong> — Did they pitch ONE service only?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">✓</button><button class="yn-btn" onclick="toggleYN(this,'no')">✗</button></div></td></tr>
+          <tr><td><strong>C</strong> — Did they ask clearly for a next step?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">✓</button><button class="yn-btn" onclick="toggleYN(this,'no')">✗</button></div></td></tr>
+          <tr><td><strong>H</strong> — Did they handle pushback calmly?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">✓</button><button class="yn-btn" onclick="toggleYN(this,'no')">✗</button></div></td></tr>
+          <tr><td>Overall natural delivery (not scripted)?</td><td><div class="score-input" id="sc5">
+            <button class="score-btn" onclick="selectScore(this,'sc5')">1</button>
+            <button class="score-btn" onclick="selectScore(this,'sc5')">2</button>
+            <button class="score-btn" onclick="selectScore(this,'sc5')">3</button>
+            <button class="score-btn" onclick="selectScore(this,'sc5')">4</button>
+            <button class="score-btn" onclick="selectScore(this,'sc5')">5</button>
+          </div></td></tr>
+          <tr><td>Would this have progressed in a real meeting?</td><td><div class="score-input"><button class="yn-btn" onclick="toggleYN(this,'yes')">Yes</button><button class="yn-btn" onclick="toggleYN(this,'no')">No</button></div></td></tr>
+        </tbody>
+      </table>
+
+      <div class="reflection-q" style="margin-top:24px"><label>Which P.I.T.C.H. step was hardest for you in the simulation? Why?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+      <div class="reflection-q"><label>What would you do differently in your next real client meeting?</label><textarea placeholder="Write your reflection here..."></textarea></div>
+    </div>
+
+    <!-- COMPLETION -->
+    <div class="completion-banner">
+      <h2>🏆 Training Complete!</h2>
+      <p>You have completed the Ethiojobs Brand Ambassador Training. You represent Ethiopia's #1 employment platform — go out there, be confident, and make every conversation count.</p>
+      <div class="badge-grid">
+        <div class="badge"><div class="badge-icon">📘</div><div class="badge-lbl">5 Modules</div></div>
+        <div class="badge"><div class="badge-icon">🛠</div><div class="badge-lbl">7 Services</div></div>
+        <div class="badge"><div class="badge-icon">🎯</div><div class="badge-lbl">P.I.T.C.H. Framework</div></div>
+        <div class="badge"><div class="badge-icon">💪</div><div class="badge-lbl">5 Activities</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="module-nav">
+    <button class="nav-btn nav-btn-prev" onclick="goTo(3)">← Handling Objections</button>
+    <button class="nav-btn nav-btn-next" onclick="restartTraining()">↺ Restart Training</button>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ── NAVIGATION ──────────────────────────────────────────────────────────────
+let currentPage = 0;
+const totalPages = 5;
+const completed = new Set();
+
+function goTo(idx) {
+  document.querySelectorAll('.module-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + idx).classList.add('active');
+  document.getElementById('nav-' + idx).classList.add('active');
+  currentPage = idx;
+  completed.add(idx);
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  closeSidebar();
+}
+
+function updateProgress() {
+  const pct = Math.round((completed.size / totalPages) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = completed.size + ' of ' + totalPages + ' modules complete';
+  completed.forEach(i => {
+    const nav = document.getElementById('nav-' + i);
+    if (nav && i !== currentPage) nav.classList.add('done');
+  });
+}
+
+function restartTraining() { goTo(0); completed.clear(); updateProgress(); }
+
+// ── SIDEBAR ──────────────────────────────────────────────────────────────────
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// ── QUIZ ─────────────────────────────────────────────────────────────────────
+const answered = {};
+function answerQuiz(qid, choice, el, type) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const opts = el.closest('.quiz-options').querySelectorAll('.quiz-option');
+  opts.forEach(o => { o.classList.add('disabled'); });
+  if (type === 'correct') {
+    el.classList.add('correct');
+    const fb = document.getElementById('fb-' + qid + '-correct');
+    if (fb) { fb.classList.add('show'); }
+  } else {
+    el.classList.add('incorrect');
+    const fb = document.getElementById('fb-' + qid + '-wrong');
+    if (fb) { fb.classList.add('show'); }
+    // show correct
+    opts.forEach(o => {
+      if (!o.classList.contains('incorrect')) {
+        const onclick = o.getAttribute('onclick');
+        if (onclick && onclick.includes("'correct'")) o.classList.add('correct');
+      }
+    });
+  }
+}
+
+// ── SCORECARD ────────────────────────────────────────────────────────────────
+function selectScore(btn, groupId) {
+  const group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function toggleYN(btn, val) {
+  const group = btn.parentElement;
+  group.querySelectorAll('.yn-btn').forEach(b => {
+    b.classList.remove('selected-yes','selected-no');
+  });
+  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected-no');
+}
+
+// ── OBJECTIONS ────────────────────────────────────────────────────────────────
+function toggleObj(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// ── CASE STUDY ────────────────────────────────────────────────────────────────
+function revealCase(btn) {
+  const reveal = btn.nextElementSibling;
+  reveal.classList.add('show');
+  btn.textContent = '✓ Answer Revealed';
+  btn.style.background = 'var(--green-mid)';
+  btn.disabled = true;
+}
+
+// ── SCENARIO SELECT ───────────────────────────────────────────────────────────
+function selectScenario(el) {
+  const grid = el.parentElement;
+  grid.querySelectorAll('.role-scenario').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ── AUDIO PLAYER (Simulated) ──────────────────────────────────────────────────
+let audioPlaying = false;
+let audioTime = 0;
+const audioDuration = 240; // 4 minutes in seconds
+let audioInterval = null;
+let playbackRate = 1;
+
+const annotations = [
+  { time: 0,   id: 'ann-0' },
+  { time: 48,  id: 'ann-1' },
+  { time: 96,  id: 'ann-2' },
+  { time: 144, id: 'ann-3' },
+  { time: 192, id: 'ann-4' },
+];
+
+// Web Audio context for generating a warm narration-like tone
+let audioCtx = null;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playTone(freq, duration, volume, type='sine') {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(volume, ctx.currentTime + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + duration);
+  } catch(e) {}
+}
+
+// Simulated coaching narration via speech synthesis
+const pitchSegments = [
+  { time: 0, text: "Good morning. My name is Sara, and I'm a Brand Ambassador with Ethiojobs. Before I tell you about us... may I ask, how do you currently find candidates when you are hiring? And what is the biggest challenge you face in that process?" },
+  { time: 48, text: "I see. That's actually a very common challenge. Ethiojobs has been operating since 1998... we are Ethiopia's number one employment platform with over one million registered candidates. Thousands of organisations trust us, from small businesses to large banks and NGOs." },
+  { time: 96, text: "Based on what you've shared about the high volume of applications, I'd specifically recommend our Longlisting Service. We review all incoming CVs against your criteria and deliver only qualified candidates... within three days of job closing." },
+  { time: 144, text: "I believe this would save your team significant time and cost. Can we schedule a thirty-minute call this week... so I can send you a formal proposal? When works best for you?" },
+  { time: 192, text: "That's a completely fair point, and many companies feel the same way before they work with us. Would it help if I shared what we did for a similar organisation in your sector? I think you'd find it quite relevant." },
+];
+
+let spokenSegments = new Set();
+let synthesis = window.speechSynthesis;
+let currentUtterance = null;
+
+function speakSegment(text) {
+  if (!synthesis) return;
+  if (currentUtterance) synthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.rate = 0.88 * playbackRate;
+  utt.pitch = 1.0;
+  utt.volume = 0.9;
+  // Try to pick a nice voice
+  const voices = synthesis.getVoices();
+  const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Google')));
+  if (preferred) utt.voice = preferred;
+  currentUtterance = utt;
+  synthesis.speak(utt);
+}
+
+function togglePlay() {
+  if (audioPlaying) {
+    pauseAudio();
+  } else {
+    startAudio();
+  }
+}
+
+function startAudio() {
+  audioPlaying = true;
+  document.getElementById('playBtn').textContent = '⏸';
+  audioInterval = setInterval(() => {
+    audioTime += 0.1 * playbackRate;
+    if (audioTime >= audioDuration) {
+      audioTime = audioDuration;
+      pauseAudio();
+      return;
+    }
+    updateAudioUI();
+    checkAnnotations();
+    checkSpeech();
+  }, 100);
+}
+
+function pauseAudio() {
+  audioPlaying = false;
+  document.getElementById('playBtn').textContent = '▶';
+  clearInterval(audioInterval);
+  if (synthesis) synthesis.cancel();
+  currentUtterance = null;
+}
+
+function checkSpeech() {
+  for (const seg of pitchSegments) {
+    if (audioTime >= seg.time && audioTime < seg.time + 0.5 && !spokenSegments.has(seg.time)) {
+      spokenSegments.add(seg.time);
+      speakSegment(seg.text);
+      break;
+    }
+  }
+}
+
+function checkAnnotations() {
+  annotations.forEach(ann => {
+    const el = document.getElementById(ann.id);
+    if (!el) return;
+    const next = annotations.find(a => a.time > ann.time);
+    const end = next ? next.time : audioDuration;
+    if (audioTime >= ann.time && audioTime < end) {
+      el.classList.add('active');
+    } else {
+      el.classList.remove('active');
+    }
+  });
+}
+
+function updateAudioUI() {
+  const pct = (audioTime / audioDuration) * 100;
+  document.getElementById('audioFill').style.width = pct + '%';
+  document.getElementById('audioThumb').style.left = pct + '%';
+  const cur = formatTime(audioTime);
+  const tot = formatTime(audioDuration);
+  document.getElementById('audioTime').textContent = cur + ' / ' + tot;
+}
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function skipAudio(delta) {
+  audioTime = Math.max(0, Math.min(audioDuration, audioTime + delta));
+  updateAudioUI();
+  spokenSegments.clear();
+  if (synthesis) synthesis.cancel();
+}
+
+function jumpTo(t) {
+  audioTime = t;
+  spokenSegments.clear();
+  if (synthesis) synthesis.cancel();
+  updateAudioUI();
+  if (!audioPlaying) startAudio();
+}
+
+function seekAudio(e) {
+  const bar = document.getElementById('audioBar');
+  const rect = bar.getBoundingClientRect();
+  const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  audioTime = pct * audioDuration;
+  spokenSegments.clear();
+  if (synthesis) synthesis.cancel();
+  updateAudioUI();
+}
+
+function setSpeed(rate, btn) {
+  playbackRate = rate;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (audioPlaying) {
+    pauseAudio();
+    startAudio();
+  }
+}
+
+// Load voices on iOS/Safari
+if (synthesis) {
+  synthesis.onvoiceschanged = () => synthesis.getVoices();
+}
+
+// Init
+updateProgress();
+goTo(0);
+completed.delete(0); // Don't mark home as "complete" on load
+</script>
+</body>
+</html>
